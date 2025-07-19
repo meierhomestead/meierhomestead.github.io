@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isaac Meier Homestead, Inc.</title>
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      background: #f2f0eb; /* light beige/grey tone */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: #3e3e3e;
+    }
+
+    p {
+      color: #5c5c5c;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .image {
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+<!-- Required for FB integration -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0"></script>
+
+
+  <div class="card">
+    <h1>Isaac Meier Homestead, Inc.</h1>
+    <div class="image">
+      <img src="images/house.png" alt="The Meier Homestead" />
+    </div>
+    <p>Isaac Meier Homestead, Inc. is a volunteer-run 501(c)⁠(3) nonprofit devoted to maintaining Isaac Meier's historic home in Myerstown, PA. 
+    We hold monthly open houses, craft classes and demonstrations, and other special events. 
+    Please visit us on Facebook to see news and events.</p>
+    
+    <!-- FB widget -->
+    <div class="fb-page" data-href="https://www.facebook.com/meierhomestead" data-tabs="timeline, events, messages" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/meierhomestead" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/meierhomestead">Isaac Meier Homestead</a></blockquote></div>
+  </div>
+  
+  
+</body>
+</html>
