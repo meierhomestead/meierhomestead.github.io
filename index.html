@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isaac Meier Homestead, Inc.</title>
+
+  <!-- Google Font for header -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: "Georgia", serif;
-      background: #f2f0eb; /* light beige/grey tone */
+      background: #f2f0eb;
       margin: 0;
       padding: 2rem 1rem;
       min-height: 100vh;
@@ -25,12 +29,14 @@
 
     h1 {
       margin-top: 0;
-      font-size: 2.5rem; /* bigger headline */
-      color: #2f2f2f; /* deep, rich charcoal */
-      text-transform: uppercase; /* formal look */
-      letter-spacing: 1px; /* elegant spacing */
-      border-bottom: 2px solid #c4b998; /* subtle heritage line */
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: #2f2f2f;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #c4b998;
       padding-bottom: 0.3em;
+      text-transform: none;
     }
 
     p {
@@ -50,20 +56,21 @@
       border-radius: 8px;
     }
 
-    /* Facebook widget container with clear float and centering */
     .fb-container {
-      clear: both; /* ensures it sits below floated content */
+      clear: both;
       margin-top: 1.5rem;
       text-align: center;
+      background: #f8f7f4;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
-    /* Limit widget width for large screens */
     .fb-container .fb-page {
-      display: inline-block; /* keeps it centered */
+      display: inline-block;
       max-width: 100%;
     }
 
-    /* Desktop adjustments */
     @media (min-width: 768px) {
       .card {
         max-width: 700px;
@@ -76,7 +83,6 @@
         margin: 0 1.5rem 1rem 0;
       }
 
-      /* Keep the FB widget centered on desktop */
       .fb-container {
         text-align: center;
       }
@@ -91,37 +97,51 @@
   src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0">
 </script>
 
-  <div class="card">
-    <h1>Isaac Meier Homestead, Inc.</h1>
-    <div class="image">
-      <img src="images/house.png" alt="The Meier Homestead" />
-    </div>
-    <p>
-      Isaac Meier Homestead, Inc. is a volunteer-run 501(c)⁠(3) nonprofit devoted 
-      to maintaining Isaac Meier's historic home in Myerstown, PA. We hold 
-      monthly open houses, craft classes and demonstrations, and other special events.
-    </p>
+<div class="card">
+  <h1>Isaac Meier Homestead, Inc.</h1>
+  <div class="image">
+    <img src="images/house.png" alt="The Meier Homestead" />
+  </div>
+  <p>
+    Isaac Meier Homestead, Inc. is a volunteer-run 501(c)⁠(3) nonprofit devoted 
+    to maintaining Isaac Meier's historic home in Myerstown, PA. We hold 
+    monthly open houses, craft classes and demonstrations, and other special events.
+  </p>
 
-    <!-- FB widget inside its own cleared and centered container -->
-    <div class="fb-container">
-      <div class="fb-page" 
-           data-href="https://www.facebook.com/meierhomestead" 
-           data-tabs="timeline, events, messages" 
-           data-width="" 
-           data-height="" 
-           data-small-header="true" 
-           data-adapt-container-width="true" 
-           data-hide-cover="true" 
-           data-show-facepile="true">
-        <blockquote cite="https://www.facebook.com/meierhomestead" 
-                    class="fb-xfbml-parse-ignore">
-          <a href="https://www.facebook.com/meierhomestead">
-            See our latest news and events and get in touch with us on Facebook.
-          </a>
-        </blockquote>
-      </div>
+  <!-- FB widget inside styled container -->
+  <div class="fb-container">
+    <div id="fb-widget" class="fb-page" 
+         data-href="https://www.facebook.com/meierhomestead" 
+         data-tabs="timeline, events, messages" 
+         data-width="" 
+         data-height="" 
+         data-small-header="true" 
+         data-adapt-container-width="true" 
+         data-hide-cover="true" 
+         data-show-facepile="true">
+      <blockquote cite="https://www.facebook.com/meierhomestead" 
+                  class="fb-xfbml-parse-ignore">
+        <a href="https://www.facebook.com/meierhomestead">
+          See our latest news and events and get in touch with us on Facebook.
+        </a>
+      </blockquote>
     </div>
   </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var fbWidget = document.getElementById("fb-widget");
+    if (window.innerWidth >= 768) { // desktop breakpoint
+      fbWidget.setAttribute("data-width", "500");
+    } else {
+      fbWidget.setAttribute("data-width", ""); // auto for mobile
+    }
+    if (typeof FB !== "undefined") {
+      FB.XFBML.parse(); // re-render FB widget after changing attribute
+    }
+  });
+</script>
 
 </body>
 </html>
