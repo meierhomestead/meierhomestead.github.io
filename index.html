@@ -23,7 +23,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
-      max-width: 400px;
+      max-width: 700px;
       margin: 0 auto;
     }
 
@@ -31,25 +31,23 @@
       margin-top: 0;
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.8rem;
-      font-style: normal;
       font-weight: 600;
       color: #2f2f2f;
       letter-spacing: 0.5px;
       border-bottom: 2px solid #c4b998;
       padding-bottom: 0.3em;
-      text-transform: none;
     }
 
     p {
       color: #5c5c5c;
-      font-size: 1.1rem;   /* slightly larger for better fill */
-      line-height: 1.8;    /* increased line height to balance image */
+      font-size: 1rem;
+      line-height: 1.5;
       margin-bottom: 1.5rem;
+      text-align: left;
     }
 
-    .image {
-      margin: 1.5rem 0;
-      width: 100%;
+    .contact {
+      margin-top: 1rem;
     }
 
     .image img {
@@ -59,7 +57,6 @@
     }
 
     .fb-container {
-      clear: both;
       margin-top: 1.5rem;
       text-align: center;
       background: #f8f7f4;
@@ -68,25 +65,41 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
-    .fb-container .fb-page {
-      display: inline-block;
-      max-width: 100%;
+    /* Historical-themed hyperlink styling */
+    a {
+      color: #5b3a29;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #5b3a29;
+    }
+
+    a:hover {
+      color: #3e2419;
+      border-bottom: 1px solid #3e2419;
     }
 
     @media (min-width: 768px) {
       .card {
-        max-width: 700px;
         text-align: left;
       }
-
-      .image {
-        float: left;
-        width: 40%;
-        margin: 0 1.5rem 1rem 0;
+      .content-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
       }
-
+      .image {
+        flex-shrink: 0;
+        width: 40%;
+      }
+      .card-text {
+        flex: 1;
+      }
+      .card-text p {
+        font-size: 1.2rem;
+        line-height: 1.9;
+      }
       .fb-container {
-        text-align: center;
+        clear: both;
       }
     }
   </style>
@@ -95,33 +108,43 @@
 
 <!-- Required for FB integration -->
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
+<script async defer crossorigin="anonymous"
   src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0">
 </script>
 
 <div class="card">
   <h1>Isaac Meier Homestead, Inc.</h1>
-  <div class="image">
-    <img src="images/house.png" alt="The Meier Homestead" />
+
+  <div class="content-row">
+    <div class="image">
+      <img src="images/house.png" alt="The Meier Homestead" />
+    </div>
+    <div class="card-text">
+      <p>
+        Isaac Meier Homestead, Inc. is a volunteer-run 501(c)⁠(3) nonprofit devoted
+        to maintaining Isaac Meier's historic home in Myerstown, PA. We hold
+        monthly open houses, craft classes and demonstrations, and other special events.
+      </p>
+      <p>
+        For inquiries, please email us at
+        <a id="email-link" href="#" aria-label="Email address"></a>
+        <noscript>(Enable JavaScript to see the email address.)</noscript>
+      </p>
+    </div>
   </div>
-  <p>
-    Isaac Meier Homestead, Inc. is a volunteer-run 501(c)⁠(3) nonprofit devoted 
-    to maintaining Isaac Meier's historic home in Myerstown, PA. We hold 
-    monthly open houses, craft classes and demonstrations, and other special events.
-  </p>
 
   <!-- FB widget inside styled container -->
   <div class="fb-container">
-    <div id="fb-widget" class="fb-page" 
-         data-href="https://www.facebook.com/meierhomestead" 
-         data-tabs="timeline, events, messages" 
-         data-width="" 
-         data-height="" 
-         data-small-header="true" 
-         data-adapt-container-width="true" 
-         data-hide-cover="true" 
+    <div id="fb-widget" class="fb-page"
+         data-href="https://www.facebook.com/meierhomestead"
+         data-tabs="timeline, events, messages"
+         data-width=""
+         data-height=""
+         data-small-header="true"
+         data-adapt-container-width="true"
+         data-hide-cover="true"
          data-show-facepile="true">
-      <blockquote cite="https://www.facebook.com/meierhomestead" 
+      <blockquote cite="https://www.facebook.com/meierhomestead"
                   class="fb-xfbml-parse-ignore">
         <a href="https://www.facebook.com/meierhomestead">
           See our latest news and events and get in touch with us on Facebook.
@@ -132,15 +155,36 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var fbWidget = document.getElementById("fb-widget");
-    if (window.innerWidth >= 768) { // desktop breakpoint
-      fbWidget.setAttribute("data-width", "500");
-    } else {
-      fbWidget.setAttribute("data-width", ""); // auto for mobile
+  document.addEventListener("DOMContentLoaded", function () {
+    // Build email address in JS to prevent scraping
+    var userCodes = [105,110,102,111]; // "info"
+    var domainCodes = [109,101,105,101,114,104,111,109,101,115,116,101,97,100]; // "meierhomestead"
+    var tldCodes = [111,114,103]; // "org"
+    var at = String.fromCharCode(64); // "@"
+    var dot = String.fromCharCode(46); // "."
+
+    function fromCodes(arr){ return arr.map(function(c){ return String.fromCharCode(c); }).join(""); }
+
+    var address = fromCodes(userCodes) + at + fromCodes(domainCodes) + dot + fromCodes(tldCodes);
+
+    var link = document.getElementById("email-link");
+    if (link) {
+      link.textContent = address;
+      link.setAttribute("href", "mailto:" + address);
     }
-    if (typeof FB !== "undefined") {
-      FB.XFBML.parse(); // re-render FB widget after changing attribute
+
+    // Adjust FB widget width on desktop
+    var fbWidget = document.getElementById("fb-widget");
+    if (fbWidget) {
+      if (window.innerWidth >= 768) {
+        fbWidget.setAttribute("data-width", "500");
+      } else {
+        fbWidget.setAttribute("data-width", "");
+      }
+    }
+
+    if (typeof FB !== "undefined" && FB.XFBML && typeof FB.XFBML.parse === "function") {
+      FB.XFBML.parse();
     }
   });
 </script>
