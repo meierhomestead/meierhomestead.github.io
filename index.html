@@ -126,6 +126,9 @@
         monthly open houses, craft classes, demonstrations, and other special events.
       </p>
       <p>
+		Please <a href="https://www.facebook.com/meierhomestead" target="_blank">visit us on Facebook</a> for current news and our <a href="https://www.facebook.com/meierhomestead/events" target="_blank">events calendar</a>.
+      </p>
+      <p>
         For inquiries, please email us at
         <a id="email-link" href="#" aria-label="Email address"></a>.
         <noscript>(Enable JavaScript to see the email address.)</noscript>
@@ -137,7 +140,7 @@
   <div class="fb-container">
     <div id="fb-widget" class="fb-page"
          data-href="https://www.facebook.com/meierhomestead"
-         data-tabs="timeline, events, messages"
+         data-tabs="timeline"
          data-width=""
          data-height=""
          data-small-header="true"
@@ -156,12 +159,11 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Build email address in JS to prevent scraping
-    var userCodes = [105,110,102,111]; // "info"
-    var domainCodes = [109,101,105,101,114,104,111,109,101,115,116,101,97,100]; // "meierhomestead"
-    var tldCodes = [111,114,103]; // "org"
-    var at = String.fromCharCode(64); // "@"
-    var dot = String.fromCharCode(46); // "."
+    var userCodes = [105,110,102,111];
+    var domainCodes = [109,101,105,101,114,104,111,109,101,115,116,101,97,100];
+    var tldCodes = [111,114,103]; 
+    var at = String.fromCharCode(64);
+    var dot = String.fromCharCode(46);
 
     function fromCodes(arr){ return arr.map(function(c){ return String.fromCharCode(c); }).join(""); }
 
